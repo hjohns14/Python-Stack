@@ -1,8 +1,11 @@
 class Node:
+    all_nodes = []
+
     def __init__(self, val, left=None, right=None):
         self.left = left
         self.right = right
         self.val = val
+        Node.all_nodes.append(self)
 
     def set_child_right(self, child):
         self.right = child
@@ -22,8 +25,19 @@ class Node:
         else:
             return False
 
+    @classmethod
+    def displayNodes(cls):
+        print(cls.all_nodes)
+    
+    @staticmethod
+    def checkNodeFull(node):
+        if node:
+            return True
+        else:
+            return False
+
+
 
 root = Node(2, Node(3), Node(5))
-l1_left = root.left
-l1_right = root.right
+Node.displayNodes()
 
