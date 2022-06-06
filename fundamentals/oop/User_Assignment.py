@@ -10,24 +10,26 @@ class User:
         self.is_rewards_member = False
         self.gold_card_points = 0
 
-    def display_info(self) -> None:
+    def display_info(self):
         for key, value in self.__dict__.items():
             print(key, value, sep=": ")
+        return self
 
-    def enroll(self) -> bool:
+    def enroll(self):
         if self.is_rewards_member:
             print("Already a Member")
-            return False
         else:
             self.is_rewards_member = True
             self.gold_card_points = 200
-            return True
+        return self
+
     
-    def spend_points(self, amount) -> None:
+    def spend_points(self, amount):
         if self.gold_card_points - amount > 0:
             self.gold_card_points -= amount
         else:
             print(f"{self.first_name} does not have enough Points!")
+        return self
 
 
 user1 = User("Hunter", "Johns", "email@email.com", 27)
@@ -35,14 +37,6 @@ user2 = User("Steve", "Rogers", "hailhydra15@email.com", 105)
 user3 = User("Thanos", None, "snap@glovemail.com", 1000)
 
 
-user1.enroll()
-user1.spend_points(50)
-user2.enroll()
-user2.spend_points(80)
-
-
-user1.display_info()
-user2.display_info()
-user3.display_info()
-
-user3.spend_points(40)
+user1.enroll().spend_points(50).display_info()
+user2.enroll().spend_points(80).display_info()
+user3.display_info().spend_points(40)
