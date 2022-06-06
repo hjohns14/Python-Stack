@@ -26,7 +26,7 @@ class BankAccount:
 
     def yeild_interest(self):
         if self.balance > 0:
-            self.balance = self.interest*self.balance + self.balance
+            self.balance = (self.interest*self.balance) + self.balance
         return self
 
     @classmethod
