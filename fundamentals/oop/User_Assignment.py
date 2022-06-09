@@ -1,4 +1,3 @@
-from importlib.util import spec_from_file_location
 
 
 class User:
