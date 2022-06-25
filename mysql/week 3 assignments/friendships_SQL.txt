@@ -1,0 +1,65 @@
+use friendships_schema;
+
+-- First Query --
+insert into users(first_name, last_name)
+values
+    ('Amy', 'Giver'),
+    ('Eli', 'Byers'),
+    ('Marky', 'Mark'),
+    ('Big', 'Bird'),
+    ('Kermit', 'The Frog'),
+    ('Joe', 'Biden');
+    
+-- 2nd Query --
+insert into friendships(user_id, friend_id)
+values
+    (1, 2),
+    (1, 4),
+    (1, 6),
+    -- 3rd Query --
+    (2, 1),
+    (2, 3),
+    (2, 5),
+    -- 4th Query --
+    (3, 2),
+    (3, 5),
+    -- 5th Query --
+    (4, 3),
+    -- Sixth Query--
+    (5, 1),
+    (5, 6),
+    -- Seventh Query --
+    (6, 2),
+    (6, 3);
+    
+
+-- 8th Query Display Friends --
+select users.first_name, users.last_name, users2.first_name as 'Friend First Name', users2.last_name as 'Friend last name' 
+from users
+join  friendships on users.id = friendships.user_id
+left join users as users2 on users2.id = friendships.friend_id;
+
+-- 9th Ninja Query Display Friends with first user --
+select users.first_name, users.last_name, users2.first_name as 'Friend First Name', users2.last_name as 'Friend last name' 
+from users
+join  friendships on users.id = friendships.user_id
+left join users as users2 on users2.id = friendships.friend_id
+where users.id = 1;
+
+-- 10th Ninja Query Count all friendships --
+select users.first_name, users.last_name, count(users2.first_name) as 'Number of Friends'
+from users
+join  friendships on users.id = friendships.user_id
+left join users as users2 on users2.id = friendships.friend_id
+group by users.id;
+-- or --
+Select count(id) as 'Number of Friendships' from friendships;
+
+-- 11th Ninja Query who has the most friends --
+-- ?
+select users.first_name, users.last_name, count(users2.first_name) as num_of_friends
+from users
+join  friendships on users.id = friendships.user_id
+left join users as users2 on users2.id = friendships.friend_id
+group by users.id;
+    

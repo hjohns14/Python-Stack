@@ -1,0 +1,41 @@
+use users_schema;
+-- Reset table and PK each time ran for debugging purposes--
+set SQL_SAFE_UPDATES=0;
+delete from users;
+
+-- First query --
+insert into users(first_name, last_name, email, created_at, updated_at)
+values
+	('Hunter', 'Johns', 'email@email.com', now(), now()),
+    ('Brooklynn', 'Rockett', 'email2@email.com', now(), now()),
+    ('Peter', 'Parker', 'email3@email.com', now(), now());
+ 
+-- Second Query --
+select * from users;
+
+-- Third query --
+select * from users 
+where email = 'email@email.com';
+
+-- Fourth Query --
+select * from users
+order by id desc LIMIT 1;
+
+
+-- Fifth Query --
+update users set last_name = 'pancakes'
+where id = 3;
+
+-- Sixth Query --
+delete from users
+where id = 2;
+
+-- Seventh Query --
+select * from users
+order by first_name ASC;
+
+-- Bonus Query --
+select * from users
+order by first_name DESC;
+    
+    

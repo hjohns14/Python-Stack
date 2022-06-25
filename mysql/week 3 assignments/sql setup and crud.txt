@@ -1,0 +1,13 @@
+USE twitter;
+insert into tweets(tweet, user_id, created_at, updated_at)
+values("Wassup", 3, now(), NOW());
+select * from tweets;
+UPDATE tweets set updated_at = NOW()
+where id = 15;
+select * from tweets;
+
+set SQL_SAFE_UPDATES = 0;
+delete from tweets
+where tweet = "Wassup";
+select * from tweets;
+

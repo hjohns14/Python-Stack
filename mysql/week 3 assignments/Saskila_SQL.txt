@@ -1,0 +1,63 @@
+use sakila;
+-- Q 1 --
+select first_name, last_name, email, address.address, city.city, country.country from customer
+join address on address.address_id = customer.address_id
+join city on address.city_id = city.city_id
+join country on city.country_id = country.country_id
+where address.city_id = 312;
+
+-- Q2 --
+select title, description, release_year, rating, special_features, category.name as genre
+from film
+join film_category on film.film_id = film_category.film_id
+join category on film_category.category_id = category.category_id
+where category.name = 'Comedy';
+
+-- Q3 --
+select actor.actor_id, CONCAT_WS(' ', actor.first_name, actor.last_name) as actor_name, film.title, film.description, film.release_year 
+from actor
+join film_actor on actor.actor_id = film_actor.actor_id
+join film on film_actor.film_id = film.film_id
+where actor.actor_id = 5;
+
+-- Q4 --
+select first_name, last_name, email, address.address from customer
+join store on customer.store_id = store.store_id
+join address on customer.address_id = address.address_id
+where store.store_id = 1
+and	address.city_id in (1, 42, 312, 459);
+
+-- Q5 --
+select title, description, release_year, rating, special_features 
+from film
+join film_actor on film.film_id = film_actor.film_id
+where rating = 'G'
+and actor_id = 15
+and special_features like '%Behind%';
+
+-- Q6 --
+select film.film_id, title, film_actor.actor_id, concat(first_name, ' ', last_name) as 'Actor Name'
+from film
+join film_actor on film.film_id = film_actor.film_id
+join actor on film_actor.actor_id = actor.actor_id
+where film.film_id = 369;
+
+-- Q7 --
+select title, description, release_year, rating, special_features, category.name as genre 
+from film
+join film_category on film.film_id = film_category.film_id
+join category on film_category.category_id = category.category_id
+where rental_rate = 2.99
+and category.name = 'Drama';
+
+-- Q8 --
+select title, description, release_year, rating, special_features, 
+	category.name, concat_ws(' ', actor.first_name, actor.last_name) as actor_name
+from film
+join film_actor on film.film_id = film_actor.film_id
+join actor on film_actor.actor_id = actor.actor_id
+join film_category on film.film_id = film_category.film_id
+join category on film_category.category_id = category.category_id
+where first_name = 'SANDRA'
+AND last_name = 'KILMER'
+and category.name = 'Action';

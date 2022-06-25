@@ -1,0 +1,58 @@
+use dojos_and_ninjas_schema;
+
+-- First Query --
+insert into dojos (name)
+values
+	('Coding'),
+    ('Flowing Water Crushing Rock'),
+    ('Dragon');
+
+select * from dojos;
+
+-- Second Query --
+delete from dojos;
+
+-- Third Query --
+insert into dojos (name)
+values
+	('Coding Dojo'),
+    ('Flowing Water Crushing Rock'),
+    ('Nikana Prime');
+select * from dojos;
+
+-- Fourth Query --
+insert into ninjas(first_name, last_name, age, dojo_id)
+values 
+	('Hunter', 'Johns', 27, 4),
+    ('Thor', 'Odinson', 1500, 4),
+    ('Loki', 'Odinson', 1054, 4);
+select * from ninjas;
+
+-- Fifth Query --
+insert into ninjas(first_name, last_name, age, dojo_id)
+values 
+	('Brooklynn', 'Rockett', 27, 5),
+    ('Hela', 'Odinson', 3000, 5),
+    ('Silver', 'Fang', 65, 5);
+    
+-- Sixth Query --
+insert into ninjas(first_name, last_name, age, dojo_id)
+values 
+	('Mesa', 'Prime', 20, 6),
+    ('Trinity', 'Prime', 10, 6),
+    ('Odonata', 'Prime', 15, 6);
+
+-- Seventh Query --
+select first_name, last_name, dojos.name as Dojo from ninjas
+join dojos on dojos.id = ninjas.dojo_id
+where dojos.id = 4;
+
+
+select first_name, last_name, dojos.name as Dojo 
+from ninjas
+join dojos on dojos.id = ninjas.dojo_id
+where dojos.id = 6;
+
+select first_name, dojos.name from ninjas
+join dojos on dojos.id = ninjas.dojo_id
+order by ninjas.id desc limit 1;
