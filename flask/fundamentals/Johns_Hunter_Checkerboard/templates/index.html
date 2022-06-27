@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+
+        .board{
+            grid-template-columns: repeat({{x}}, 8fr);
+            grid-template-rows: repeat({{y}}, 8fr);
+        }
+        .red{
+            background-color: {{color1}};
+        }
+        .black{
+            background-color: {{color2}};
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="board">
+            {% for j in range(y) %}
+            {% for i in range(x) %}
+                {% if j%2 %}
+                    {% if i%2 %}
+                        <div class="red"></div>
+                    {% else %}
+                        <div class="black"></div>
+                    {% endif %}
+                        
+                        
+                {% else %}
+                    {% if i%2 %}
+                        <div class="black"></div>
+                    {% else %}
+                        <div class="red"></div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+</html>
