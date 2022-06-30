@@ -1,0 +1,38 @@
+.flexy{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 24pt;
+}
+
+.display{
+    font-size: 18pt;
+}
+
+.add{
+    background-color: green;
+    height: 50px;
+    width: fit-content;
+    border-radius: 25px;
+    font-size: larger;
+    margin: 5px;
+}
+
+.reset{
+    background-color: red;
+    height: 50px;
+    width: fit-content;
+    border-radius: 25px;
+    font-size: larger;
+    margin: 5px;
+}
+
+.container{
+    display: flex;
+}
