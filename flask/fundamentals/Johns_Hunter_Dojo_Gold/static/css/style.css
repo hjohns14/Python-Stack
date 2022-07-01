@@ -1,0 +1,7 @@
+.activity-panel{
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    border: 1px dotted rgb(10, 10, 10);
+    border-radius: 10px;
+}
