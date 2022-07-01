@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block head %}
+{{super()}} 
+{% endblock %}
+
+{% block upper %}
+{{super()}}
+<div class="display" style="background-color: {{color}};">
+    <h3 class="answer">{{text}}</h3>
+    {% if color == 'green' %}
+        <form action="/" method="get">
+            <button style="background-color: slategrey;">Play Again?</button>
+        </form>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+
+{% block lower %}
+    {{super()}}
+{% endblock %}

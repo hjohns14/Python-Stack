@@ -1,3 +1,6 @@
+{% block head %}
+    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,23 @@
     <title>The Great Number Game</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
+{% endblock %}
+
+{% block upper %}
 <body>
-    
+    <div class="hero">
+        <h1 class="title">Welcome to the Great Number Game</h1>
+        <h3 class="subtitle">I am thinking of a number between 1 and 100.</h3>
+        <p class="subtitle">Take a guess!</p>
+{% endblock %}
+
+{% block lower %}
+        <form action="/guess" method="post" class="hero">
+            <label for="guess"></label>
+            <input type="text" name="guess" class="guess">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
+{% endblock %}
