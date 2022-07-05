@@ -1,0 +1,28 @@
+1. Running Query: SELECT name FROM users
+Something went wrong (1054, "Unknown column 'name' in 'field list'")
+  File "C:\Users\hntrj\OneDrive\Desktop\Programs\Coding Dojo\Python Stack\flask_mysql\db_connection\Johns_Hunter_MySQL_Connection_Errors\flask_app\models\users.py", line 21, in get_all
+    for user in results:
+TypeError: 'bool' object is not iterable
+
+1. I used a column name that didnt exist
+
+2. File "C:\Users\hntrj\OneDrive\Desktop\Programs\Coding Dojo\Python Stack\flask_mysql\db_connection\Johns_Hunter_MySQL_Connection_Errors\flask_app\models\users.py", line 22, in get_all
+users.append(cls(user).first_name)
+File "C:\Users\hntrj\OneDrive\Desktop\Programs\Coding Dojo\Python Stack\flask_mysql\db_connection\Johns_Hunter_MySQL_Connection_Errors\flask_app\models\users.py", line 7, in __init__
+self.last_name = data["last_name"]
+KeyError: 'last_name'
+
+2. I selected one column in the get all method
+
+3.File "C:\Users\hntrj\OneDrive\Desktop\Programs\Coding Dojo\Python Stack\flask_mysql\db_connection\Johns_Hunter_MySQL_Connection_Errors\server.py", line 15, in main
+users.User.new_user(new_user)
+TypeError: User.new_user() missing 1 required positional argument: 'user_data'
+
+3. I didnt use the class method decorator
+
+4. Running Query: INSERT INTO users(first_name, last_name, handle, birthday) VALUES(Hunter, Johns, huntala, DATE(1994-12-19))
+Something went wrong (1054, "Unknown column 'Hunter' in 'field list'")
+Running Query: SELECT * FROM users
+['Kobe', 'Vince', 'Allen', 'Tracy', 'Rajon']
+
+4. I had to write data to insert like this "'Hunter'" instead of like this "Hunter"
