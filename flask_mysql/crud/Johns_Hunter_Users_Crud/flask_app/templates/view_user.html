@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container-fluid py-5">
+
+        <div class="row justify-content-center my-5">
+            <div class="col-4">
+                <table class="table table-sm border table-borderless bg-light">
+                    <thead class="border-bottom border-dark">
+                        <th>User</th>
+                        <th>Details</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Full name</td>
+                            <td>{{user_info.first_name}} {{user_info.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>{{user_info.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Created On</th>
+                            <td>{{user_info.created_at.strftime("%d-%m-%Y")}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Last Updated On</th>
+                            <td>{{user_info.updated_at.strftime("%d-%m-%Y")}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-1 d-flex justify-content-end">
+                <a href="/users" class="fs-4 text-decoration-none">Home</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-5 d-inline-flex justify-content-between">
+                <p>
+                    <a href="/users/{{user_info.id}}//edit" class="fs-5">Edit</a>
+                    |  
+                    <a href="/users/{{user_info.id}}/delete" class="fs-5">Delete</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+</html>
