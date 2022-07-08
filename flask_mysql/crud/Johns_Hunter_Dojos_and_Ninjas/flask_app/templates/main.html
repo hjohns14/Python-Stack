@@ -12,10 +12,10 @@
         <div class="row justify-content-center">
             <div class="col-3 bg-dark pt-5 pb-5 mx-5">
                 <h1 class="text-warning">New Dojo</h1>
-                <form action="/dojo/add" method="post">
+                <form action="/dojos/add" method="post">
                     <div class="form-group bg-dark">
                         <label for="name" class="mt-1 text-light">Name</label>
-                        <input type="name" class="form-control" aria-describedby="nameInput" placeholder="Enter Name">
+                        <input type="name" name="name" class="form-control" aria-describedby="nameInput" placeholder="Enter Name">
                         <button type="submit" class="btn btn-primary mt-4">Add Dojo</button>
                     </div>
                 </form>
@@ -23,9 +23,19 @@
             <div class="col-3 bg-dark pt-5 pb-5 mx-5">
                 <h1 class="text-warning">All Dojos</h1>
                 <ul class="text-light">
-                    <li>Chicago</li>
+                    {% for dojo in dojos %}
+                        <li>
+                            <a href="/dojos/{{dojo.id}}">{{dojo.name}}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
-                
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-7 my-3 bg-light">
+                <button class="btn btn-primary">
+                    <a class="text-light text-decoration-none" href="/ninjas">Add Ninja</a>
+                </button>
             </div>
         </div>
     </div>

@@ -12,23 +12,27 @@
         <div class="row justify-content-center">
             <div class="col-3 bg-dark py-5">
                 <h1 class="text-warning">New Ninja</h1>
-                <form action="/dojo/add" method="post">
+                <form action="/ninjas/add" method="post">
                     <div class="form-group bg-dark">
-                        <label for="dojo" class="text-light">Select Dojo</label>
-                        <select name="dojo" id="dojo" class="form-control">
-                            <option value="exdojo">Example Dojo</option>
-                            <option value="exdojo2">Example Dojo 2</option>
+                        <label for="dojo_id" class="text-light">Select Dojo</label>
+                        <select name="dojo_id" id="dojo" class="form-control">
+                            {% for dojo in dojos %}
+                                <option value="{{dojo.id}}">{{dojo.name}}</option>
+                            {% endfor %}
                         </select>
                         <label for="first_name" class="mt-1 text-light">First Name</label>
-                        <input type="first_name" class="form-control" aria-describedby="nameInput" placeholder="Enter First">
+                        <input name="first_name" type="first_name" class="form-control" aria-describedby="nameInput" placeholder="Enter First">
                         <label for="last_name" class="mt-1 text-light">Last Name</label>
-                        <input type="last_name" class="form-control" aria-describedby="nameInput" placeholder="Enter Last">
+                        <input name="last_name" type="last_name" class="form-control" aria-describedby="nameInput" placeholder="Enter Last">
                         <label for="age" class="mt-1 text-light">Age</label>
-                        <input type="age" class="form-control" aria-describedby="nameInput" placeholder="Enter age">
+                        <input  name="age"type="age" class="form-control" aria-describedby="nameInput" placeholder="Enter age">
                         
-                        <button type="submit" class="btn btn-primary mt-4">Add Dojo</button>
+                        <button type="submit" class="btn btn-primary mt-4">Add Ninja</button>
                     </div>
                 </form>
+                <a href="/dojos">
+                    <button class="btn btn-primary mt-4">Go Home</button>
+                </a>
             </div>
         </div>
     </div>
