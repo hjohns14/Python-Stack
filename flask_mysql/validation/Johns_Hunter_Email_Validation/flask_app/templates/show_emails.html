@@ -11,22 +11,29 @@
 
     <div class="container">
         <div class="row justify-content-center my-4">
-            <div class="col-4 bg-dark py-5 text-light">
-                <h2 class="text-warning">Email Validation</h2>
-                <form action="/process" method="post">
-                    <label for="email" class="form-label">Enter Email</label>
-                    <input type="text" name="email" id="email" class="form-control">
-                    {% with messages = get_flashed_messages(with_categories=True) %}
-                    {% if messages %}
-                    {% for category, message in messages %}
-                        <p class="text-light" id="{{category}}">{{message}}</p>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-
+            <div class="col-5 bg-dark py-5 text-light">
+                <h2 class="text-warning">Emails Entered</h2>
+                <table class="table table-light table-borderless text-dark">
                     
-                    <button class="btn btn-primary mt-4">Enter</button>
-                </form>
+                    <thead>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        {% for email in all_emails %}
+                        <tr>
+                            <td>{{email.email}}</td>
+                            <td>{{email.created_at.strftime("%m-%d-%Y")}}</td>
+                            <td><a href="/delete/{{email.id}}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="/">
+                    <button class="btn btn-primary">Go Home</button>
+                </a>
             </div>
         </div>
     </div>

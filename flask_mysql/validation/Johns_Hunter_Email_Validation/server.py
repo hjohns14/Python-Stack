@@ -2,12 +2,7 @@ from flask import render_template
 from flask_app import app
 
 #Import All YOUR CONTROLLERS
-
-
-#Move routes to controllers files
-@app.route('/')
-def main():
-    return render_template("index.html")
+from flask_app.controllers import emails
 
 
 if __name__ == "__main__":
