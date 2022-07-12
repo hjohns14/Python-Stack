@@ -3,8 +3,10 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
 from flask_bcrypt import Bcrypt
+import re
 
 bcrypt = Bcrypt(app)
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
     db_name = 'recipe_schema'
@@ -68,10 +70,13 @@ class User:
     def validate_registration(user):
         is_valid = True
         pw_invalid = False
-        if len(user['first_name']) < 1 or len(user['last_name']) < 1:
+        if len(user['first_name']) < 2 or len(user['last_name']) < 2:
             flash("* Field Required: Name", 'Register')
             is_valid = False
-        if len(user['email']) < 1:
+        if not EMAIL_REGEX.match(user['email']):
+            flash("* Invalid Email Format", 'Register')
+            is_valid = False            
+        if len(user['email']) < 1: 
             flash("* Field Required: Email", 'Register')
             is_valid = False
         if not user['password']:
@@ -84,10 +89,11 @@ class User:
             is_valid = False
 
         all_users = User.get_all_users_safe()
-        for db_user in all_users:
-            if user['email'] == db_user.email:
-                flash("* Email has been taken", "Register")
-                is_valid = False
+        if all_users:
+            for db_user in all_users:
+                if user['email'] == db_user.email:
+                    flash("* Email has been taken", "Register")
+                    is_valid = False
         
         # creates a list of each character in the password like ['a', 'b', 'c']
         pw = [letter for letter in user['password']]
@@ -122,8 +128,10 @@ class User:
         return is_valid
 
     @staticmethod
-    def validate_password(user):
-
-
-        pass
+    def check_session(session):
+        if 'logged_in' in session:
+            if session['logged_in'] == True:
+                return True
+        else: return False
+        
 

@@ -11,13 +11,13 @@ bcrypt = Bcrypt(app)
 @app.route('/')
 def index():
     today = date.today().strftime("%Y-%m-%d")
-    if 'logged_in' in session:
+    if user.User.check_session(session):
         return redirect("/dashboard")
     return render_template('index.html', today=today)
 
 @app.route('/dashboard')
 def method_name():
-    if 'logged_in' in session:
+    if user.User.check_session(session):
         return render_template("dashboard.html", session=session)
 
     else:
@@ -47,7 +47,7 @@ def register():
     session['logged_in'] = True
 
     print(session)
-    #user.User.save(user_data)
+    user.User.save(user_data)
     return redirect("/dashboard")
 
 @app.route('/login', methods=['POST'])
