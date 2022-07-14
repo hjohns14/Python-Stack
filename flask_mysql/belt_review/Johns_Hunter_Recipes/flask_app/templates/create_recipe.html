@@ -19,9 +19,14 @@
         </div>
 
         <div class="row mx-5">
-            <form action="/recipes/new/create" class="form-control border-0 bg-light px-0 d-flex justify-content-between">
+            <form action="/recipes/new/create" class="form-control border-0 bg-light px-0 d-flex justify-content-between" method="POST">
                 <div class="col-6">
                     <div class="row my-2">
+                        {% with messages = get_flashed_messages(category_filter=["Recipe"]) %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                        {% endwith %}
                         <label for="name" class="col-sm-2 col-form-label">Name:</label>
                         <div class="col-sm-10">
                             <input name="name" type="name" class="form-control" id="name">
@@ -36,7 +41,7 @@
                     <div class="row my-2">
                         <label for="instructions" class="col-sm-2 col-form-label">Instructions:</label>
                         <div class="col-sm-10">
-                            <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+                            <textarea name="instructions" id="description" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
@@ -47,11 +52,11 @@
                     
                         <p class="mt-5">Under 30 minutes?</p>
                     <div class="form-check form-check-inline mt-0">
-                        <input type="radio" name="under_30" id="under_30_yes" class="form-check-input">
+                        <input type="radio" name="under_30" id="under_30_yes" class="form-check-input" value="yes">
                         <label for="under_30" class="form-check-label">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="radio" name="under_30" id="under_30_no" class="form-check-input">
+                        <input checked type="radio" name="under_30" id="under_30_no" class="form-check-input" value="no">
                         <label for="under_30" class="form-check-label">No</label>
                     </div>
                     <button class="btn btn-primary d-block my-5 px-5">Submit</button>

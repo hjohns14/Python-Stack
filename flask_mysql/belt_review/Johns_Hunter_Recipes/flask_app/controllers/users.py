@@ -1,7 +1,6 @@
-import bcrypt
 from flask import render_template, request, redirect, session, flash
 from flask_app import app
-from flask_app.models import user
+from flask_app.models import user, recipe
 from datetime import date
 from flask_bcrypt import Bcrypt
 
@@ -13,15 +12,16 @@ def index():
     today = date.today().strftime("%Y-%m-%d")
     if user.User.check_session(session):
         return redirect("/dashboard")
-    return render_template('index.html', today=today)
+    return render_template('index.html', today=today, session=session)
 
 @app.route('/dashboard')
-def method_name():
-    if user.User.check_session(session):
-        return render_template("dashboard.html", session=session)
-
-    else:
+def dashboard():
+    if not user.User.check_session(session):
         return redirect("/")
+    all_recipes = recipe.Recipe.get_all_recipes()
+    return render_template("dashboard.html", session=session, all_recipes=all_recipes)
+
+
 ### Hidden Routes
 
 
@@ -58,10 +58,15 @@ def login():
     user_in_db = user.User.get_user_by_email(data)
     if not user_in_db:
         flash("Invalid Email/Password", "Login")
+        session['email'] = data['email']
         return redirect("/")
     if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
         flash("Invalid Email/Password", "Login")
+        session['email'] = data['email']
         return redirect("/")
+
+    #Use session.pop if you need to hang on to any other data
+    session.clear()
 
     print("Success!")
     session['user_id'] = user_in_db.id

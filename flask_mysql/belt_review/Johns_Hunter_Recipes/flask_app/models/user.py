@@ -21,6 +21,8 @@ class User:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
 
+        self.recipes = []
+
     @classmethod
     def save(cls, data):
         query = """INSERT INTO users(first_name, last_name, email, password, birthday)
@@ -65,6 +67,39 @@ class User:
             all_users.append(cls(user_data))
         
         return all_users
+
+    @classmethod
+    def get_users_and_recipes(cls):
+        ## Do Query that gets data the easiest way
+        query = """SELECT first_name, last_name, recipes.name, under_30
+                    FROM users
+                    JOIN recipes ON recipes.user_id = users.id;"""
+        
+        results = connectToMySQL(cls.db_name).query_db(query)
+
+        for row in results:
+            user_data = {
+                'id': '',
+                'first_name': row['first_name'],
+                'last_name': row['last_name'],
+                'email': '',
+                'password': '',
+                'birthday': '',
+                'created_at': '',
+                'updated_at': '',
+            }
+            recipe_data = {
+                'id': '',
+                'name': row['name'],
+                'description': '',
+                'instructions': '',
+                'under_30': row['under_30'],
+                'date_created': '',
+                'description': '',
+                'description': '',
+            }
+
+
 
     @staticmethod
     def validate_registration(user):
