@@ -37,10 +37,17 @@
                         {% for recipe in all_recipes %}
                             <tr>
                                 <td>{{recipe.name}}</td>
-                                <td>{{under_30.capitalize()}}</td>
-                                <td></td>
+                                <td>{{recipe.under_30.capitalize()}}</td>
+                                <td>{{recipe.creator.first_name}} {{recipe.creator.last_name}}</td>
                                 <td>
-                                    <a href="/dashboard">Action</a>
+                                    {% if recipe.creator.id == session['user_id'] %}
+                                    <a href="/recipes/{{recipe.id}}/edit">Edit</a>
+                                    <a href="/recipes/{{recipe.id}}">View</a>
+                                    <a href="/recipes/{{recipe.id}}">Delete</a>
+                                    {% else %}
+                                    <a href="/recipes/{{recipe.id}}">View</a>
+                                    {% endif %}
+                                    
                                 </td>
                             </tr>
                         {% endfor %}

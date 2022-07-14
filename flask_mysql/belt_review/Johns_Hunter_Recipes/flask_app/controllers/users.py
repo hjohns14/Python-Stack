@@ -18,7 +18,7 @@ def index():
 def dashboard():
     if not user.User.check_session(session):
         return redirect("/")
-    all_recipes = recipe.Recipe.get_all_recipes()
+    all_recipes = recipe.Recipe.get_all_recipes_and_creator()
     return render_template("dashboard.html", session=session, all_recipes=all_recipes)
 
 
@@ -45,9 +45,7 @@ def register():
             continue
         session[key] =  val
     session['logged_in'] = True
-
-    print(session)
-    user.User.save(user_data)
+    session['user_id'] = user.User.save(user_data)
     return redirect("/dashboard")
 
 @app.route('/login', methods=['POST'])

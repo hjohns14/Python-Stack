@@ -71,15 +71,17 @@ class User:
     @classmethod
     def get_users_and_recipes(cls):
         ## Do Query that gets data the easiest way
-        query = """SELECT first_name, last_name, recipes.name, under_30
+        query = """SELECT *
                     FROM users
                     JOIN recipes ON recipes.user_id = users.id;"""
         
         results = connectToMySQL(cls.db_name).query_db(query)
+        print(results)
+
 
         for row in results:
             user_data = {
-                'id': '',
+                'id': row['id'],
                 'first_name': row['first_name'],
                 'last_name': row['last_name'],
                 'email': '',
@@ -89,14 +91,15 @@ class User:
                 'updated_at': '',
             }
             recipe_data = {
-                'id': '',
+                'id': row['recipe.id'],
                 'name': row['name'],
                 'description': '',
                 'instructions': '',
                 'under_30': row['under_30'],
                 'date_created': '',
-                'description': '',
-                'description': '',
+                'created_at': '',
+                'updated_at': '',
+                'user_id': row['user_id']
             }
 
 
