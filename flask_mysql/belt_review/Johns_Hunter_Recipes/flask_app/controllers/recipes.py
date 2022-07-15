@@ -4,10 +4,14 @@ from flask_app.models import user, recipe
 
 @app.route('/recipes/new')
 def new_recipe():
+    if not user.User.check_session(session):
+        return redirect("/")
     return render_template("create_recipe.html")
 
 @app.route('/recipes/<int:id>')
 def view_recipe(id):
+    if not user.User.check_session(session):
+        return redirect("/")
     data = {
         'id': id
     }
@@ -15,6 +19,8 @@ def view_recipe(id):
 
 @app.route('/recipes/<int:id>/edit')
 def edit_recipe(id):
+    if not user.User.check_session(session):
+        return redirect("/")
     data = {
         'id': id
     }
@@ -47,6 +53,7 @@ def create_recipe():
 
 @app.route("/recipes/<int:id>/edit/process", methods=["POST"])
 def edit_in_db(id):
+    
     data = {
         'id': id,
         'name': request.form['name'],
@@ -55,7 +62,19 @@ def edit_in_db(id):
         'date_created': request.form['date_created'],
         'under_30': request.form['under_30']
     }
+    print(data)
+    if not recipe.Recipe.validate_recipe(data):
+        return redirect("/recipes/new")
 
     recipe.Recipe.update(data)
-    return redirect(url_for("view_recipe", id=id))
+    return redirect("/dashboard")
+
+@app.route('/recipes/<int:id>/delete')
+def delete_recipe(id):
+    data = {
+        'id': id
+    }
+    recipe.Recipe.delete(data)
+
+    return redirect("/dashboard")
 

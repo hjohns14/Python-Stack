@@ -23,6 +23,11 @@
             <form action="/recipes/{{recipe.id}}/edit/process" method="post" class="form-control border-0 bg-light px-0 d-flex justify-content-between">
                 <div class="col-6">
                     <div class="row my-2">
+                        {% with messages = get_flashed_messages(category_filter=["Recipe"]) %}
+                        {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endfor %}
+                        {% endwith %}
                         <label for="name" class="col-sm-2 col-form-label">Name:</label>
                         <div class="col-sm-10">
                             <input name="name" type="name" class="form-control" id="name" value="{{recipe.name}}">
@@ -47,14 +52,14 @@
                         <input type="date" name="date_created" id="date_created" class="form-control" value="{{recipe.date_created}}">
                     
                         <p class="mt-5">Under 30 minutes?</p>
-                    <div class="form-check form-check-inline mt-0">
-                        <input type="radio" name="under_30" id="under_30_yes" class="form-check-input" checked>
-                        <label for="under_30" class="form-check-label">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="radio" name="under_30" id="under_30_no" class="form-check-input">
-                        <label for="under_30" class="form-check-label">No</label>
-                    </div>
+                        <div class="form-check form-check-inline mt-0">
+                            <input type="radio" name="under_30" id="under_30_yes" class="form-check-input" value="yes">
+                            <label for="under_30" class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input checked type="radio" name="under_30" id="under_30_no" class="form-check-input" value="no">
+                            <label for="under_30" class="form-check-label">No</label>
+                        </div>
                     <button class="btn btn-primary d-block my-5 px-5">Submit</button>
                 </div>
             </form>
