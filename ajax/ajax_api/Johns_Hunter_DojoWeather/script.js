@@ -5,7 +5,7 @@ var currentCity = document.getElementById("city")
 var unitInitial = document.getElementById("select").value
 var cookieJar = document.getElementById("cookies")
 var todayElement = document.getElementById("today")
-var key = "e6fc68ff9a7fb75f996bdd32d6aa7bef"
+
 
 
 async function getWeather(cityName){
