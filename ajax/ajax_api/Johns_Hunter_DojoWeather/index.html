@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav">
+            <div class="col-1 center">
+            <h1 class="nav-title">Dojo Weather</h1>
+            </div>
+            
+            <div class="col-1">
+                <ul class="nav-links center">
+                    <li><a href="#" onclick="changeCity(this)">Colorado Springs</a></li>
+                    <li><a href="#" onclick="changeCity(this)">Chicago</a></li>
+                    <li><a href="#" onclick="changeCity(this)">Dallas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row underline">
+            <div class="col-1 left">
+                <h2 id="city">San Jose</h2>
+            </div>
+            <div class="col-1 right">
+                <label for="temp">show temperature in</label>
+                <select title="temp" name="temp" id="select" onclick="getUnitInitial(this)" onchange="convert(this)">
+                    <option value="f">&deg; F</option>
+                    <option value="c">&deg; C</option>
+                    <option value="r">&deg; R</option>
+                    <option value="k">&deg; K</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1 card">
+                <h3>Today</h3>
+                <img src="./assets/some_rain.png" alt="rain_cloud" class="w-img">
+                <p>some rain</p>
+                <div class="w-temp" id="today">
+                    <h5 class="temp high" id="today-h">24&deg;</h5>
+                    <h5 class="temp low" id="today-l">18&deg;</h5>
+                </div>
+            </div>
+            <div class="col-1 card">
+                <h3>Tomorrow</h3>
+                <img src="./assets/some_sun.png" alt="rain_cloud" class="w-img">
+                <p>some sun</p>
+                <div class="w-temp">
+                    <h5 class="temp high" id="tomorrow-h">27&deg;</h5>
+                    <h5 class="temp low" id="tomorrow-l">19&deg;</h5>
+                </div>
+            </div>
+            <div class="col-1 card">
+                <h3>Friday</h3>
+                <img src="./assets/some_sun.png" alt="rain_cloud" class="w-img">
+                <p>some sun</p>
+                <div class="w-temp">
+                    <h5 class="temp high" id="friday-h">21&deg;</h5>
+                    <h5 class="temp low" id="friday-l">16&deg;</h5>
+                </div>
+            </div>
+            <div class="col-1 card">
+                <h3>Saturday</h3>
+                <img src="./assets/some_clouds.png" alt="rain_cloud" class="w-img">
+                <p>some clouds</p>
+                <div class="w-temp">
+                    <h5 class="temp high" id="saturday-h">26&deg;</h5>
+                    <h5 class="temp low" id="saturday-l">21&deg;</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row center" id="cookies">
+            <div class="cookie-jar">
+                <img src="./assets/cookie.png" alt="">
+                <div class="col-1 card left">
+                    <h3>Stop Cookie Time!</h3>
+                    <p>This site makes use of third-party cookies, by clicking 
+                        "I accept" you agree to the terms outlines in our 
+                        <a href="#">cookie policy</a>
+                    </p>
+
+                </div>
+                <!-- on click the button runs the remove function on the whole row -->
+                <button class="cookie-button" onclick="acceptCookie()">I Accept</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
